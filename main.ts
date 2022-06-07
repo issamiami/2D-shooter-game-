@@ -188,6 +188,8 @@ function LevelControl () {
             . . . . . . . 6 . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Player)
+        Play.setPosition(16, 102)
+        Help.setPosition(134, 102)
         controller.moveSprite(Cursor)
         Cursor.setStayInScreen(true)
         animation.runImageAnimation(
@@ -270,13 +272,14 @@ function LevelControl () {
         500,
         true
         )
-        Play.setPosition(12, 110)
-        Help.setPosition(139, 110)
     }
     if (Level == 1) {
         Cursor.destroy()
         Help.destroy()
         Play.destroy()
+        Text.destroy()
+        Text2.destroy()
+        easteregg.destroy()
         game.setDialogTextColor(7)
         game.setDialogCursor(img`
             . . . . . . . . . . . . . . . . 
@@ -1045,6 +1048,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Button, function (sprite, otherS
             Level = 1
             LevelControl()
         }
+    } else if (Level == 2) {
+        if (otherSprite == Play && controller.A.isPressed()) {
+            Level = 1
+            LevelControl()
+        }
+    } else {
+    	
     }
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -1073,11 +1083,11 @@ let Medical_Pac: Sprite = null
 let projectile: Sprite = null
 let statusbar: StatusBarSprite = null
 let wave_2: StatusBarSprite = null
+let ALIEN_INVASION__COMPLETE: StatusBarSprite = null
+let george: Sprite = null
 let easteregg: Sprite = null
 let Text2: Sprite = null
 let Text: Sprite = null
-let ALIEN_INVASION__COMPLETE: StatusBarSprite = null
-let george: Sprite = null
 let Cursor: Sprite = null
 let Help: Sprite = null
 let Play: Sprite = null
